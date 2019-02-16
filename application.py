@@ -2,6 +2,7 @@ import os
 
 from flask import Flask, flash, redirect, render_template, request, session
 from flask_session import Session  #an additional extension to sessions which allows them to be stored server-side
+from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 
@@ -9,26 +10,26 @@ from helpers import login_required
 
 
 app = Flask(__name__)
-
-# Check for environment variable
-if not os.getenv("DATABASE_URL"):
-    raise RuntimeError("DATABASE_URL is not set")
-
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # Configure session to use filesystem
-app.config['FLASK_APP'] = 'application.py'
+
+app.config['FLASK_APP'] = 'application.py'       
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 app.config["TEMPLATES_AUTO_RELOAD"] = True      # Ensure templates are auto-reloaded
-app.config['DATABASE_URL'] = "postgres://hanhwyqbammtux:6756e0985e15fc08edc4cd25e502d25a40c378f97dd756d2f00f62fa9cbb4fc2@ec2-23-23-184-76.compute-1.amazonaws.com:5432/d2ab7or90sdleo"
-
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']  #same command as os.getenv. allows us to use database_url environemntt variable to find database 
+db = SQLAlchemy(app)
 
 Session(app)
 
 # Set up database
-engine = create_engine(os.getenv("DATABASE_URL"))
-db = scoped_session(sessionmaker(bind=engine))
+#engine = create_engine(os.getenv("DATABASE_URL"))       #same command as os.getenv
+#db = scoped_session(sessionmaker(bind=engine))
 
 
+# Check for environment variable
+if not os.getenv("DATABASE_URL"):
+    raise RuntimeError("DATABASE_URL is not set")
 
 @app.route("/", methods=["GET", "POST"])
 #@login_required
