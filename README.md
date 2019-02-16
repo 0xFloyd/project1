@@ -11,7 +11,7 @@ when you have your .env file set up, use source .env to load environment variabl
 
 pip freeze > requirements.txt       //update requirements.txt
 
-
+when all updates are ready and pushed to github, push to heroku with git push heroku master
 
 Notes: 
 SESSION_TYPE 	- Specifies which type of session interface to use. Built-in session types:
