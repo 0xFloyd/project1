@@ -1,0 +1,23 @@
+
+
+Host
+    ec2-23-23-184-76.compute-1.amazonaws.com
+Database
+    d2ab7or90sdleo
+User
+    hanhwyqbammtux
+Port
+    5432
+Password
+    6756e0985e15fc08edc4cd25e502d25a40c378f97dd756d2f00f62fa9cbb4fc2
+URI
+    postgres://hanhwyqbammtux:6756e0985e15fc08edc4cd25e502d25a40c378f97dd756d2f00f62fa9cbb4fc2@ec2-23-23-184-76.compute-1.amazonaws.com:5432/d2ab7or90sdleo
+Heroku CLI
+    heroku pg:psql postgresql-encircled-94306 --app cs50wweek3
+
+
+
+Api Key
+Here is your developer key for using the Goodreads API. This key must be appended to every request using the form variable 'key'. (If you're using our write API, you'll need your secret too.)
+
+key: qCDJPrRYdvj9qIsdP5nHg
